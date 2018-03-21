@@ -1,60 +1,3 @@
- 
-      function Page(data) {
-        return (<header>
-          <h1>{headerTitulo}</h1>
-          <p></p>
-        </header>
-    
-        // <section {id:"main", style:{width: "70%", float: "left"}}>
-        //   <h2></h2>
-        //   <article>
-        //     <h3></h3>
-        //     <p></p>
-        //     <hr />
-        //   </article>
-        //   <article>
-        //     <h3>Titulo 2</h3>
-        //     <p>Descripcion 2</p>
-        //     <hr />
-        //   </article>
-        //   <article>
-        //     <h3>Titulo 3</h3>
-        //     <p>Descripcion 2</p>
-        //     <hr />
-        //   </article>
-        // </section>
-    
-        // <aside style="width: 25%; float: right;">
-        //   <h4>Links</h4>
-        //   <ul>
-        //     <li><a href="#">Link 1</a></li>
-        //     <li><a href="#">Link 2</a></li>
-        //     <li><a href="#">Link 3</a></li>
-        //     <li><a href="#">Link 4</a></li>
-        //     <li><a href="#">Link 5</a></li>
-        //   </ul>
-        // </aside>
-    
-
-        );      
-      };
-      
-
-      function Page () {
-          return <cabecera headerTitulo={data.headerTitulo}/>
-      }
-
-      ReactDOM.render(
-        <Page
-          headerTitulo={data.headerTitulo}
-          headerDescripcion={data.headerDescripcion}
-          mainSectionTitulo={data.mainSectionTitulo}
-          mainSectionArticles={data.articles}
-          asideTitulo={data.asideTitulo}
-          asideLinks={data.links}
-        />,
-        document.getElementById('react-container')
-      ); 
 
       const data = {
         headerTitulo: 'Getting Started',
@@ -74,3 +17,38 @@
           { href: '#', texto: 'Link 5'}
         ],
       };
+
+       
+      function Header(props) {
+        return ( <div>
+          <p>{props.headerTitulo}</p>
+          
+          <p>{props.mainSectionArticles[0].titulo}</p>
+          {props.mainSectionArticles.map(article => {
+            return <div>
+            <h1>{article.titulo}</h1>
+            <p>{article.descripcion}</p>
+            </div>;
+          })}
+          {props.asideLinks.map(link => {
+            return <div>
+               <a href={link.href}>{link.texto}</a>
+            </div>
+          })}
+          
+      </div>)     
+      };
+// map queda al 
+      // sirve para rederisar lo escrito. Crea el DOM virtual e inyecta la funcion que regresa jsx en forma de html. Primer parametro es la funcion a renderiza y el segun
+      ReactDOM.render(
+        <Header
+        // 
+          headerTitulo={data.headerTitulo}
+          headerDescripcion={data.headerDescripcion}
+          mainSectionTitulo={data.mainSectionTitulo}
+          mainSectionArticles={data.articles}
+          asideTitulo={data.asideTitulo}
+          asideLinks={data.links}
+        />,
+        document.getElementById('react-container')
+      ); 
