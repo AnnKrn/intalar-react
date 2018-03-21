@@ -26,7 +26,7 @@
           <p>{props.mainSectionArticles[0].titulo}</p>
           {props.mainSectionArticles.map(article => {
             return <div>
-            <h1>{article.titulo}</h1>
+            <h1 key={article.titulo}>{article.titulo}</h1>
             <p>{article.descripcion}</p>
             </div>;
           })}
